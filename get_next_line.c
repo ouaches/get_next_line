@@ -41,13 +41,12 @@ char            *my_realloc(char *old, int size)
       i++;
     }
   free(old);
-  old = NULL;
   return (new);
 }
 
 char            *get_next_line(const int fd)
 {
-  static int    bool = 1;
+  static int    last = 1;
   static int    rd = 0;
   static int    i = 0;
   static char   *res = NULL;
@@ -56,7 +55,7 @@ char            *get_next_line(const int fd)
   if (buf[my_len(buf) - rd] == '\0')
     {
       if ((rd = read(fd, buf, READ_MAX)) <= 0)
-        return (res = (bool-- && buf[my_len(buf) - rd - 1] != 10) ? res : NULL);
+        return (res = (last-- && buf[my_len(buf) - rd - 1] != 10) ? res : NULL);
       buf[rd] = '\0';
     }
   if ((res = (i == 0) ? malloc(sizeof(*res) * READ_MAX + 1) :
@@ -74,7 +73,7 @@ char            *get_next_line(const int fd)
   return (get_next_line(fd));
 }
 
-int             main()
+int             main(void)
 {
   char          *str;
 
