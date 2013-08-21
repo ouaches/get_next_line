@@ -1,6 +1,12 @@
 get_next_line
 =============
 
+Usages:
+Avec un fichier: cat "fichier" | ./exec
+Avec l'entree standard: ./exec
+
+Details:
+
 Récupère x caractères depuis un file descriptor jusqu’à rencontrer un caractère de retour chariot (backslash + n).
 
 Le programme est composé de trois fonctions:
