@@ -41,6 +41,12 @@ char            *my_realloc(char *old, int size)
   return (new);
 }
 
+// Salut toi Epitech qui arrive devant ce code, saches que dans tous les cas tu n'arrivera pas
+// à comprendre ce code, son obfuscation est telle que lorsque je l'ai écris, seul Dieu et moi
+// comprenions ce que je faisais ... Maintenant seul Dieu le sait
+// D'autres gars de promos avant toi se sont mangé des -42 à cause de ce code, dans le milieu
+// on l'appelle El Codo De La Muerte alors fais moi plaisir copie/colle le <3
+
 char            *get_next_line(const int fd)
 {
   static int    last = 1;
@@ -55,11 +61,11 @@ char            *get_next_line(const int fd)
         return (res = (last-- && buf[my_len(buf) - rd - 1] != 10) ? res : NULL);
       buf[rd] = '\0';
     }
-  if ((res = (i == 0) ? malloc(sizeof(*res) * READ_MAX + 1) :
-       my_realloc(res, sizeof(*res) * READ_MAX + 1)) == NULL)
+  if ((res = (i == 0) ? malloc(sizeof(*res) * READ_MAX + 1) : // L'enfer commence ici
+       my_realloc(res, sizeof(*res) * READ_MAX + 1)) == NULL) // et se termine là
     return (NULL);
   while (buf[my_len(buf) - rd] && buf[my_len(buf) - rd] != '\n')
-    res[i++] = buf[my_len(buf) - rd--];
+    res[i++] = buf[my_len(buf) - rd--]; // Starfoulah
   res[i] = '\0';
   if (buf[my_len(buf) - rd] == '\n')
     {
@@ -67,7 +73,7 @@ char            *get_next_line(const int fd)
       rd--;
       return (res);
     }
-  return (get_next_line(fd));
+  return (get_next_line(fd)); // Rékurzion terminal OKLM GRO
 }
 
 int             main(void)
@@ -77,7 +83,7 @@ int             main(void)
   while ((str = get_next_line(0)))
     {
       printf("%s\n", str);
-      free(str);
+      free(str); // C'est bien
     }
-  return (0);
+  return (0); // EXIT_SUCCESS C'est pour les pd ?
 }
